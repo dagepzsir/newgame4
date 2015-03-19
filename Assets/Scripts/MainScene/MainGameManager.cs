@@ -21,6 +21,7 @@ public class MainGameManager : MonoBehaviour {
     }
     void Start () {
         DontDestroyOnLoad(SaveObject);
+        
         LoadGame(SaveObject.Map);
 	}
     

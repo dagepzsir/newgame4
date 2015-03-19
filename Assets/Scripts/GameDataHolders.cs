@@ -66,13 +66,15 @@ namespace Assets.Scripts
 
         [ProtoMember(1)]
         public Dictionary<Vec2Ser, MacroTileData> MapData = new Dictionary<Vec2Ser, MacroTileData>();
-        private void CreateMap(int size)
+        private void CreateMap(int size, float seed = 0)
         {
+            if (seed == 0)
+                seed = UnityEngine.Random.Range(0.0f, 114.0f);
             for(int y = 0; y < size; y++)
             {
                 for(int x = 0; x < size; x++)
                 {
-                    MacroTileData temp = new MacroTileData(Mathf.PerlinNoise(0.1f * x, 0.1f * y));
+                    MacroTileData temp = new MacroTileData(Mathf.PerlinNoise(0.1f * x + seed, 0.1f * y + seed));
                     MapData.Add(new Vec2Ser(x, y), temp);
                 }
             }

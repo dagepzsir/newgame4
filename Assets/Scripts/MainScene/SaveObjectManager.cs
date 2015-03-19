@@ -36,6 +36,7 @@ public class SaveObjectManager : MonoBehaviour {
     void Awake () {
         Debug.Log("SaveObj Awake");
         string filePath = PlayerPrefs.GetString(PlayerPrefEnum.MainFilePath.ToString());
+        Debug.Log(filePath);
         if (File.Exists(filePath + "main.bin"))
         {
             if (Map == null)
