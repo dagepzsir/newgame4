@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using Assets.Scripts;
-
-
-
 public class MicroGameManager : MonoBehaviour {
 
     public GameObject ObjectToSpawn;

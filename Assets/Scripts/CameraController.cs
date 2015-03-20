@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.Rendering;
-
+using UnityStandardAssets;
 using System.Collections;
+using UnityStandardAssets.ImageEffects;
 public class CameraController : MonoBehaviour
 {
 
@@ -58,7 +59,7 @@ public class CameraController : MonoBehaviour
                 currentSpeedX = 0;
                 currentSpeedY = 0;
                 //manager.isPaused = true;
-                GetComponent<BlurEffect>().enabled = true;
+                GetComponent<BlurOptimized>().enabled = true;
             }
             else
             {
@@ -73,7 +74,7 @@ public class CameraController : MonoBehaviour
                         Time.timeScale = 1;
                         pauseMenu.enabled = false;
                         //manager.isPaused = false;
-                        GetComponent<BlurEffect>().enabled = false;
+                        GetComponent<BlurOptimized>().enabled = false;
                     }
                 }
                 else
@@ -81,7 +82,7 @@ public class CameraController : MonoBehaviour
                     Time.timeScale = 1;
                     pauseMenu.enabled = false;
                     //manager.isPaused = false;
-                    GetComponent<BlurEffect>().enabled = false;
+                    GetComponent<BlurOptimized>().enabled = false;
                 }
             }
         }

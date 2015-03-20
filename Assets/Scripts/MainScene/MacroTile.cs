@@ -33,6 +33,7 @@ public class MacroTile : MonoBehaviour {
     public Sprite BaseSprite;
     public Vec2Ser ChunkCoordinates;
     public Vector2 ChunkVec;
+    public BaseTileObject ObjectOnTile;
     public MacroTile(float height)
     {
         Height = height;
@@ -45,7 +46,7 @@ public class MacroTile : MonoBehaviour {
     {
         GetComponent<SpriteRenderer>().color = color;
     }
-    public void SetTileBaseSprite(Sprite[] basesprites)
+    public void SetTileBaseSprite(Sprite[] basesprites, GameObject[] enviromentalobjs)
     {
         switch (GetComponent<MacroTile>().TileCategory)
         {
@@ -57,11 +58,17 @@ public class MacroTile : MonoBehaviour {
             case MacroTileCategory.Grass:
                 BaseSprite = basesprites[(int)TileCategory];
                 Color color2 = new Color(Color.green.r, Color.green.g * ((Height) + 2 * (0.5f - Height)), Color.green.b, Color.green.a);
+                if (Height >= 0.4f)
+                    SetObject(enviromentalobjs[(int)EnviromentObjecType.Grass]);
                 HighColor = color2;
                 break;
             case MacroTileCategory.Forest:
                 BaseSprite = basesprites[(int)TileCategory];
                 Color color3 = new Color(Color.green.r, Color.green.g * (1 - Height), Color.green.b, Color.green.a);
+                if (Height >= 0.6f)
+                    SetObject(enviromentalobjs[(int)EnviromentObjecType.PineTree]);
+                else
+                    SetObject(enviromentalobjs[(int)EnviromentObjecType.NormalTree]);
                 HighColor = color3;
                 break;
             case MacroTileCategory.Mountain:
@@ -73,6 +80,14 @@ public class MacroTile : MonoBehaviour {
         GetComponent<SpriteRenderer>().sprite = BaseSprite;
         GetComponent<SpriteRenderer>().color = HighColor;
     }
+
+    public void SetObject(GameObject tileobject)
+    {
+        ObjectOnTile = tileobject.GetComponent<BaseTileObject>();
+        transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = tileobject.GetComponent<BaseTileObject>().ObjectSprite;
+
+    }
+
     void Start () {
         ChunkVec = new Vector2(ChunkCoordinates.X, ChunkCoordinates.Y);
 	}

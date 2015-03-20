@@ -10,6 +10,7 @@ public class MainGameManager : MonoBehaviour {
     public Sprite MouseOverTexture;
     public MacroTileCategory TileCategory;
     public Sprite[] BaseTileSprites;
+    public GameObject[] EnviromentalObjects;
     private Dictionary<Vec2Ser, MacroTile> tileDict = new Dictionary<Vec2Ser, MacroTile>();
     private float distance
     {
@@ -44,7 +45,7 @@ public class MainGameManager : MonoBehaviour {
             tempObj.GetComponent<MacroTile>().ChunkCoordinates = new Vec2Ser(chunkX, chunkY);
 
             tempObj.GetComponent<MacroTile>().TileCategory = values.Value.TileCategory;
-            tempObj.GetComponent<MacroTile>().SetTileBaseSprite(BaseTileSprites);
+            tempObj.GetComponent<MacroTile>().SetTileBaseSprite(BaseTileSprites, EnviromentalObjects);
 
             tileDict.Add(values.Key, tempObj.GetComponent<MacroTile>());
         }

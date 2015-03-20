@@ -14,7 +14,8 @@ public enum MiniTileCategory
     Military = 2
 }
 
-public class MiniTile : MonoBehaviour {
+public class MiniTile : MonoBehaviour 
+{
 
     public event MiniTileClickedHandle MiniTileClicked;
     public event MiniTileOverHandle MiniTileMouseOver;
