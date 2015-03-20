@@ -52,10 +52,16 @@
      <Compile Include="Assets\Scripts\GameDataHolders.cs" />
      <Compile Include="Assets\Scripts\MainScene\MacroTile.cs" />
      <Compile Include="Assets\Scripts\MainScene\MainGameManager.cs" />
+     <Compile Include="Assets\Scripts\MainScene\PauseMenuScriptMainScene.cs" />
      <Compile Include="Assets\Scripts\MainScene\SaveObjectManager.cs" />
-     <Compile Include="Assets\Scripts\MicroGameManager.cs" />
+     <Compile Include="Assets\Scripts\MicroScene\MicroGameManager.cs" />
+     <Compile Include="Assets\Scripts\MicroScene\PauseMenuScript.cs" />
      <Compile Include="Assets\Scripts\MiniTile.cs" />
      <Compile Include="Assets\Scripts\StartScene\StartSceneButtons.cs" />
+     <None Include="Assets\CameraMotionBlur.shader" />
+     <None Include="Assets\Scenes\BlendModesOverlay.shader" />
+     <None Include="Assets\VortexEffect.shader" />
+     <None Include="Assets\BlurEffectConeTaps.shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

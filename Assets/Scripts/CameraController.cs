@@ -7,8 +7,8 @@ public class CameraController : MonoBehaviour
 
     public Canvas pauseMenu;
     public Canvas openFileDialog;
-    //public BaseGameManager manager;
 
+    public bool EnableMovement = true;
     public float MaxSpeed = 2;
     public float Acceleration = 1;
     public float MaxZoom = 4;
@@ -21,28 +21,31 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
-        targetSpeedX = Input.GetAxisRaw("Horizontal") * MaxSpeed;
-        currentSpeedX = IncrementTowards(currentSpeedX, targetSpeedX, Acceleration);
-
-        targetSpeedY = Input.GetAxisRaw("Vertical") * MaxSpeed;
-        currentSpeedY = IncrementTowards(currentSpeedY, targetSpeedY, Acceleration);
-
-        if (Input.GetAxis("Fire1") != 0)
+        if (EnableMovement)
         {
+            targetSpeedX = Input.GetAxisRaw("Horizontal") * MaxSpeed;
+            currentSpeedX = IncrementTowards(currentSpeedX, targetSpeedX, Acceleration);
 
-            currentSpeedX = MaxSpeed * -Input.GetAxis("Mouse X");
-            currentSpeedY = MaxSpeed * -Input.GetAxis("Mouse Y");
-        }
+            targetSpeedY = Input.GetAxisRaw("Vertical") * MaxSpeed;
+            currentSpeedY = IncrementTowards(currentSpeedY, targetSpeedY, Acceleration);
 
-        if (Input.GetAxis("Mouse ScrollWheel") < 0)
-        {
-            if (GetComponent<Camera>().orthographicSize >= MinZoom)
-                GetComponent<Camera>().orthographicSize -= ZoomBy;
-        }
-        if (Input.GetAxis("Mouse ScrollWheel") > 0)
-        {
-            if (GetComponent<Camera>().orthographicSize <= MaxZoom)
-                GetComponent<Camera>().orthographicSize += ZoomBy;
+            if (Input.GetAxis("Fire1") != 0)
+            {
+
+                currentSpeedX = MaxSpeed * -Input.GetAxis("Mouse X");
+                currentSpeedY = MaxSpeed * -Input.GetAxis("Mouse Y");
+            }
+
+            if (Input.GetAxis("Mouse ScrollWheel") < 0)
+            {
+                if (GetComponent<Camera>().orthographicSize >= MinZoom)
+                    GetComponent<Camera>().orthographicSize -= ZoomBy;
+            }
+            if (Input.GetAxis("Mouse ScrollWheel") > 0)
+            {
+                if (GetComponent<Camera>().orthographicSize <= MaxZoom)
+                    GetComponent<Camera>().orthographicSize += ZoomBy;
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -86,7 +89,10 @@ public class CameraController : MonoBehaviour
         transform.Translate(currentSpeedX, currentSpeedY, 0);
 
     }
-
+    void Start()
+    {
+        pauseMenu.enabled = false;
+    }
     private float IncrementTowards(float n, float target, float a)
     {
         if (n == target)
